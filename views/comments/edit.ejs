@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row jumbotron">
+      <div class="forms">
+        <h2 style="text-align: center">Edit Comment</h2>
+          <form id="ratingsForm" action="/brunches/<%= brunch_id %>/comments/<%=comment._id %>?_method=PUT" method="POST">
+            <label for="rating star">
+            <fieldset class="rating star">
+              <input type="radio" id="star5" name="comment[rating]" value="5" <% if (comment.rating=="5") { %> checked <% } %> >
+              <label class = "full" for="star5" ></label>
+              <input type="radio" id="star4" name="comment[rating]" value="4" <% if (comment.rating=="4") { %> checked <% } %> >
+              <label class = "full" for="star4" ></label>
+              <input type="radio" id="star3" name="comment[rating]" value="3" <% if (comment.rating=="3") { %> checked <% } %> >
+              <label class = "full" for="star3" ></label>
+              <input type="radio" id="star2" name="comment[rating]" value="2" <% if (comment.rating=="2") { %> checked <% } %> >
+              <label class = "full" for="star2" ></label>
+              <input type="radio" id="star1" name="comment[rating]" value="1" <% if (comment.rating=="1") { %> checked <% } %> >
+              <label class = "full" for="star1" ></label>
+            </fieldset>
+            </label>
+              <br>
+              <div class="form-group">
+                <textarea class="form-control" name="comment[text]" rows="4" cols="50"><%=comment.text %></textarea>
+              </div>
+              <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block">Submit</button>
+              </div>
+          </form>
+          <a href="/brunches">Go Back</a>
+      </div>
+    </div>
+</div>
+<br>
+<% include ../partials/footer %>

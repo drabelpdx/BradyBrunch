@@ -1,0 +1,130 @@
+<% include ../partials/header %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">BrunchApp</p>
+      <div class="list-group">
+        <li class="list-group-item active">Address</li>
+        <li class="list-group-item">
+          <iframe width="230" height="200" frameborder="0" style="border:0" src="<%=brunch.mapurl%>" allowfullscreen></iframe>
+        </li>
+        <li class="list-group-item active">General Info</li>
+        <li class="list-group-item">
+          <div class="info-block">
+          <label for="rating_show cost_show">
+            <fieldset id="cost" class="rating_show cost_show" value="<%=brunch.cost %>">
+              <input type="radio" id="star5" name="cost" <% if (brunch.cost=="5") { %> checked <% } %> disabled >
+              <label class = "full" for="star5" ></label>
+              <input type="radio" id="star4" name="cost" <% if (brunch.cost=="4") { %> checked <% } %> disabled >
+              <label class = "full" for="star4" ></label>
+              <input type="radio" id="star3" name="cost" <% if (brunch.cost=="3") { %> checked <% } %> disabled >
+              <label class = "full" for="star3" ></label>
+              <input type="radio" id="star2" name="cost" <% if (brunch.cost=="2") { %> checked <% } %> disabled >
+              <label class = "full" for="star2" ></label>
+              <input type="radio" id="star1" name="cost" <% if (brunch.cost=="1") { %> checked <% } %> disabled >
+              <label class = "full" for="star1" ></label>
+            </fieldset>
+            <h5>Meal Cost</h5>
+          </label>
+
+          <label for="rating_show wait_show">
+            <fieldset id="cost" class="rating_show wait_show" value="<%=brunch.wait %>">
+              <input type="radio" id="star5" name="wait" <% if (brunch.wait=="5") { %> checked <% } %> disabled >
+              <label class = "full" for="star5" ></label>
+              <input type="radio" id="star4" name="wait" <% if (brunch.wait=="4") { %> checked <% } %> disabled >
+              <label class = "full" for="star4" ></label>
+              <input type="radio" id="star3" name="wait" <% if (brunch.wait=="3") { %> checked <% } %> disabled >
+              <label class = "full" for="star3" ></label>
+              <input type="radio" id="star2" name="wait" <% if (brunch.wait=="2") { %> checked <% } %> disabled >
+              <label class = "full" for="star2" ></label>
+              <input type="radio" id="star1" name="wait" <% if (brunch.wait=="1") { %> checked <% } %> disabled >
+              <label class = "full" for="star1" ></label>
+            </fieldset>
+            <h5>Wait Time</h5>
+          </label>
+
+          <label for="rating_show coffee_show">
+            <fieldset id="cost" class="rating_show coffee_show" value="<%=brunch.coffee %>">
+              <input type="radio" id="star5" name="coffee" <% if (brunch.coffee=="5") { %> checked <% } %> disabled >
+              <label class = "full" for="star5" ></label>
+              <input type="radio" id="star4" name="coffee" <% if (brunch.coffee=="4") { %> checked <% } %> disabled >
+              <label class = "full" for="star4" ></label>
+              <input type="radio" id="star3" name="coffee" <% if (brunch.coffee=="3") { %> checked <% } %> disabled >
+              <label class = "full" for="star3" ></label>
+              <input type="radio" id="star2" name="coffee" <% if (brunch.coffee=="2") { %> checked <% } %> disabled >
+              <label class = "full" for="star2" ></label>
+              <input type="radio" id="star1" name="coffee" <% if (brunch.coffee=="1") { %> checked <% } %> disabled >
+              <label class = "full" for="star1" ></label>
+            </fieldset>
+            <h5>Coffee Strength</h5>
+          </label>
+        </div>
+        </li>
+        <li class="list-group-item active">Website</li>
+        <li class="list-group-item">
+          <h5><a href="http://<%=brunch.url%>" target="_blank"><%=brunch.url%></a></h5>
+        </li>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= brunch.image %>">
+        <div class="caption-full">
+          <h4><a><%= brunch.name %></a></h4>
+          <p><%= brunch.about %></p>
+          <p><em>Submitted by <%= brunch.author.username %></em></p>
+          <% if(currentUser && brunch.author.id.equals(currentUser._id)){ %>
+            <a class="btn btn-warning" href="/brunches/<%= brunch._id%>/edit">Edit</a>
+            <form class="inLine-button" action="/brunches/<%= brunch._id%>?_method=DELETE" method="POST">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+      <div class="well">
+        <div class="text-right">
+          <a class="btn btn-success" href="/brunches/<%=brunch._id %>/comments/new">Add a Review</a>
+        </div>
+        <hr>
+        <% brunch.comments.forEach(function(comment){ %>
+          <div class="row">
+            <div class="col-md-2">
+              <p><img class="img-circle" src="../images/<%=comment.author.username %>.png" onerror="this.src='../images/notbrady.png'"></p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                  <a class="btn btn-xs btn-warning" href="/brunches/<%=brunch._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                  <form class="inLine-button" action="/brunches/<%=brunch._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-xs btn-danger">Delete</button>
+                  </form>
+                <% } %>
+            </div>
+            <div class="col-md-10">
+              <form>
+              <div class="pull-right">
+                <label for="rating_show star_show">
+                  <fieldset id="<%=comment._id%>" class="rating_show star_show" value="<%=comment.rating %>" >
+                    <input type="radio" id="star5" name="rating" <% if (comment.rating=="5") { %> checked <% } %> disabled  >
+                    <label class = "full" for="star5" ></label>
+                    <input type="radio" id="star4" name="rating" <% if (comment.rating=="4") { %> checked <% } %> disabled >
+                    <label class = "full" for="star4" ></label>
+                    <input type="radio" id="star3" name="rating" <% if (comment.rating=="3") { %> checked <% } %> disabled >
+                    <label class = "full" for="star3" ></label>
+                    <input type="radio" id="star2" name="rating" <% if (comment.rating=="2") { %> checked <% } %> disabled >
+                    <label class = "full" for="star2" ></label>
+                    <input type="radio" id="star1" name="rating" <% if (comment.rating=="1") { %> checked <% } %> disabled >
+                    <label class = "full" for="star1" ></label>
+                  </fieldset>
+                </label>
+              </div>
+            </form>
+              <p><strong><%= comment.author.username %></strong></p>
+              <p><%= comment.text %></p>
+            </div>
+          </div>
+          <hr>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>

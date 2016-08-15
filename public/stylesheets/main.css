@@ -1,0 +1,160 @@
+body {
+  background-color: steelblue;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+
+.thumbnail {
+  padding: 0;
+}
+
+.thumbnail .caption-full {
+  padding: 9px;
+}
+
+.inLine-button {
+  display: inline;
+}
+
+h1 {
+  text-align: center
+}
+
+h2 {
+  text-align: center
+}
+
+.forms {
+  width: 30%;
+  margin: 30px auto
+}
+
+.landing {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto
+}
+
+IMG.bsq {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px
+}
+
+.img-circle {
+  border-radius: 50%;
+  max-width: 50px;
+}
+
+.info-block {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/****** Style Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.star > label:before {
+  font-size: 1.25em;
+  content: "\f005";
+}
+
+.cost > label:before {
+  font-size: 1.5em;
+  content: "\f155";
+}
+
+.wait > label:before {
+  font-size: 1.5em;
+  content: "\f017";
+}
+
+.coffee > label:before {
+  font-size: 1.5em;
+  content: "\f0f4";
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+.rating_show {
+  border: none;
+  float: left;
+}
+
+.rating_show > input { display: none; }
+.rating_show > label:before {
+  margin: 5px;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.star_show > label:before {
+  font-size: 1.25em;
+  content: "\f005";
+}
+
+.cost_show > label:before {
+  margin-left: .5em;
+  font-size: 1.5em;
+  content: "\f155";
+}
+
+.wait_show > label:before {
+  margin-left: .2em;
+  font-size: 1.5em;
+  content: "\f017";
+}
+
+.coffee_show > label:before {
+  margin-left: .1em;
+  font-size: 1.5em;
+  content: "\f0f4";
+}
+
+.rating_show > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating_show > input:checked ~ label, /* show gold star when clicked */
+
+
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }

@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+
+  <div class="container">
+    <header class="jumbotron">
+      <div class="row">
+        <img class="img-circle" src="images/mikecarol.png">
+        <img class="img-circle" src="images/greg.png">
+        <img class="img-circle" src="images/marcia.png">
+        <img class="img-circle" src="images/peter.png">
+        <img class="img-circle" src="images/jan.png">
+        <img class="img-circle" src="images/bobby.png">
+        <img class="img-circle" src="images/cindy.png">
+      </div>
+      <h2>Our Favorite Brunch Spots</h2>
+    </header>
+    <% if((currentUser && currentUser.username == "cindy") ||
+          (currentUser && currentUser.username == "bobby") ||
+          (currentUser && currentUser.username == "jan") ||
+          (currentUser && currentUser.username == "peter") ||
+          (currentUser && currentUser.username == "marcia") ||
+          (currentUser && currentUser.username == "greg")) { %>
+    <a class="btn btn-lg btn-default btn-block landing" href="/brunches/new">Add a New Brunch Spot</a>
+    <% } %>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <div class="col-lg-12">
+        </div>
+      <% brunches.forEach(function(brunch){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= brunch.image %>">
+                <div class="caption">
+                    <h4><%= brunch.name %></h4>
+                </div>
+                <p>
+                  <a href="/brunches/<%= brunch._id %>" class="btn btn-primary">More Info</a>
+                </p>
+            </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+
+<% include ../partials/footer %>
