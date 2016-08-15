@@ -17,7 +17,11 @@ var commentRoutes = require("./routes/comments"),
 
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost/brunch");
+
+//Development
+var url = process.env.DATABASEURL ||"mongodb://localhost/brunch";
+mongoose.connect(url);
+
 app.use(bodyPaser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
@@ -25,9 +29,6 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 //seedDB(); //seed the database
-
-//AIzaSyBt0iZxncA-p8C83lwJYMNef-wlqHYvAN8 //GOOGLEAPI
-
 
 // PASSPORT CONFIG
 app.use(require("express-session")({
@@ -53,6 +54,6 @@ app.use(indexRoutes);
 app.use(brunchRoutes);
 app.use(commentRoutes);
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("The server has started!");
 });
