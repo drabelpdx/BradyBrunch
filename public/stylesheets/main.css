@@ -58,10 +58,22 @@ IMG.bsq {
   max-width: 50px;
 }
 
+.inline{
+  display: inline-block;
+}
+
+.aligncenter{
+  text-align: center;
+}
+
 .info-block {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.lead {
+  color: white;
 }
 
 

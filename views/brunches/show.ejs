@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <p class="lead">BrunchApp</p>
+      <p class="lead">Brunch Spot Info</p>
       <div class="list-group">
         <li class="list-group-item active">Address</li>
         <li class="list-group-item">
@@ -88,8 +88,8 @@
         <hr>
         <% brunch.comments.forEach(function(comment){ %>
           <div class="row">
-            <div class="col-md-2">
-              <p><img class="img-circle" src="../images/<%=comment.author.username %>.png" onerror="this.src='../images/notbrady.png'"></p>
+            <div class="col-md-2 aligncenter">
+              <p><img class="img-circle inline" src="../images/<%=comment.author.username %>.png" onerror="this.src='../images/notbrady.png'"></p>
                 <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                   <a class="btn btn-xs btn-warning" href="/brunches/<%=brunch._id %>/comments/<%=comment._id %>/edit">Edit</a>
                   <form class="inLine-button" action="/brunches/<%=brunch._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST">
